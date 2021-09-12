@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+template='{{range .data.viewer.pullRequests.nodes -}}
+{{"#" | color "green"}}{{.number | color "green"}}	{{.title}}	{{.reviewDecision}}	{{.url | color "blue+h"}}
+{{end}}'
+
+query='query {
+    viewer {
+        pullRequests(first: 100, states: OPEN, orderBy: {field: UPDATED_AT, direction: DESC}) {
+            nodes {
+                number
+                title
+                reviewDecision
+                url
+            }
+        }
+    }
+}'
+
+exec gh api graphql --paginate -f query="$query" -t "$template"
