@@ -3,8 +3,8 @@
 set -e
 
 template='{{range .data.viewer.pullRequests.nodes -}}
-{{tablerow (printf "#%v" .number | autocolor "green") .title (.reviewDecision | autocolor "yellow") (.url | autocolor "cyan") }}
-{{end}}
+{{tablerow (printf "#%v" .number | autocolor "green") .title (.reviewDecision | autocolor "yellow") (.url | autocolor "cyan") -}}
+{{end -}}
 {{tablerender}}'
 
 query='query {
