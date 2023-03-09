@@ -9,5 +9,5 @@ gh pulls
 Install: 
 
 ```sh
-gh extension install .
+gh extension install AaronMoat/gh-pulls
 ```
